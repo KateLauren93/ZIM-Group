@@ -100,12 +100,8 @@ frame.on("ready", function() {
         axis:"both"
     });
 
-    // HIT TESTS
-    Ticker.add(function () {
-        // loop through each planet
-        // do a hit test on if rocket is hitting planet
-    })
-
+    // HIT TEST
+    // written out in english
     Ticker.add(function () {
         space.loop(function () {
             if (rocket hits planet) {
@@ -116,6 +112,23 @@ frame.on("ready", function() {
             }
         })
     })
+
+    // HIT TEST EXAMPLE
+    var circles = new Container().addTo();
+    loop(20, function(){
+        var circle = new Circle(20, green).loc(rand(stageW), rand(stageH), circles);
+        circle.collected = false;
+    });
+
+    var collector = new Rectangle(50, 100).center().drag();
+    collector.on("pressmove", function() {
+        circles.loop(function(circle) {
+            if (!circle.collected && collector.hitTestCircle(circle)) {
+                circle.collected = true;
+                score.text = Number(score.text) + 1;
+            }
+        });
+    });
 
     stage.update();
 
