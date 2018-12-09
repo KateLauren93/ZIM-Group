@@ -16,7 +16,8 @@ var outerColor = darker;
 var assets = ["background.png", "rocket.png", "planet1.png", "planet2.png", "planet3.png", "planet4.png", "planet5.png", "planet6.png", "planet7.png", "planet8.png", "planet9.png", "planet10.png", "gas.png", "energy1.png", "energy2.png", "energy3.png"];
 var path = "assets/";
 
-var frame = new Frame(scaling, width, height, color, outerColor, assets, path, new Waiter());
+var frame = new Frame(scaling, width, height, color, outerColor, assets, path, new Waiter({foregroundColor: white, backgroundColor: red}));
+frame.loadAssets({font:"Space Mono", src:"https://fonts.googleapis.com/css?family=Space+Mono"});
 frame.on("ready", function() {
     var stage = frame.stage;
     var stageW = frame.width;
@@ -164,7 +165,14 @@ frame.on("ready", function() {
     });
 
     // SCORE
-    
+    var label = new Label({
+        text:"SCORE",
+        size:80,
+        font:"Space Mono",
+        color:"red"
+    });
+
+    label.pos(1400, 100);
 
     stage.update();
 
