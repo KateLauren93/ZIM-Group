@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Space Evaders Intro</title>
+
+<script src="https://d309knd7es5f10.cloudfront.net/createjs_1.1_min.js"></script>
+<script src="https://d309knd7es5f10.cloudfront.net/zim_9.3.0.js"></script>
+
+<script>
+
+var scaling = "fit";
+var width = 1920;
+var height = 1080;
+var color = "#08669F";
+var outerColor = "#021E2F";
+var assets = ["background.png", "smoke.png", "planets.png", "stars.png"];
+var path = "assets/";
+
+var frame = new Frame(scaling, width, height, color, outerColor, assets, path, new Waiter({foregroundColor: white, backgroundColor: red}));
+frame.loadAssets({font:"Space Mono", src:"https://fonts.googleapis.com/css?family=Space+Mono"});
+frame.on("ready", function() {
+    zog("ready from ZIM Frame");
+
+    var stage = frame.stage;
+    var stageW = frame.width;
+    var stageH = frame.height;
+
+    var background = frame.asset("background.png").addTo();
+    var smoke = new Scroller(frame.asset("smoke.png").addTo(), .2);
+    var stars = new Scroller(frame.asset("stars.png").addTo(), .2);
+    var planets = new Scroller(frame.asset("planets.png").addTo(), .8);
+
+    var instructions = new Label({
+        text:"Avoid the planets. Collect the energy. And gain the most points in under 30 seconds!",
+        font:"Space Mono",
+        color:"white",
+        backgroundColor:"red",
+        padding:25,
+        labelWidth:500,
+        lineHeight:40
+    }).centerReg().loc(960, 540);
+
+    var startGame = new Label({
+        text:"START",
+        font:"Space Mono",
+        color:"white",
+        backgroundColor:"red",
+        padding:25,
+        labelWidth:500,
+        rollColor:"blue"
+    });
+
+    startGame.centerReg().loc(960, 800).on("click", function() {location.href = "space-evaders.html"});
+
+    stage.update();
+
+});
+
+</script>
+
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+</head>
+
+<body>
+<!-- canvas with id="myCanvas" is made by zim Frame -->
+<!-- all assets from <a href="http://www.freepik.com">freepik</a> -->
+</body>
+</html>
